@@ -4,6 +4,10 @@
 # pass is used to give no info to the class
 # def is a function, they say what the objects assigned to the class do
 # self is almost always a parameter in every function
+# The class object is created when the class definition is executed
+# In a method definition, the parameter "self" refers to the instance object that invokes the method
+# Instantation of the class creates a new instance object
+
 class Person:
     def set_details(self, name, age):
         self.name = name
