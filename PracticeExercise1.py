@@ -9,12 +9,10 @@ class BankAccount:
         print("The account belonging to ", self.name, " has a balance of $", self.balance)
 
     def withdraw(self, amount):
-        self.amount = amount
-        self.balance = self.balance - self.amount
+        self.balance = self.balance - amount
 
     def deposit(self, amount):
-        self.amount = amount
-        self.balance = self.balance + self.amount
+        self.balance = self.balance + amount
 
 a1 = BankAccount()
 a2 = BankAccount()
