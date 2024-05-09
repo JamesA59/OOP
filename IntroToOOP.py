@@ -2,6 +2,7 @@
 
 # git config user.name "JamesA59"
 # git config user.email "jamesba555@yahoo.com"
+
 # Programming paradigm - an approach to organize and structure your code
 # 2 common programming paradigms: Procedural programming and object oriented programming (OOP)
 # Procedural programming - a step by step procedure is followed sequentially to solve a problem
