@@ -1,2 +1,0 @@
-# Practice Exercise 1
-
