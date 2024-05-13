@@ -1,5 +1,14 @@
 # Property
 
+# A property allows access to an instance variable through methods, even though the method syntax is not used
+# @property - to be placed before the getter method
+# @name.setter - to be placed before the setter method
+# @name.deleter - to be placed before the deleter method
+# Attribute type checking and validation
+# Crate a read only or write only attribute
+# Transform an instance variable into a dynamically calculated attribute
+# Incorporate a new bahviour in your instance variables, without any need to rewrite the existing client code
+
 class Product:
     def __init__(self,x,y):
         self._x = x
