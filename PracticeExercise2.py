@@ -28,7 +28,7 @@ class Book:
         self.publisher = publisher
         self.pages = pages
         if 50 < price < 1000:
-            self._price = price
+            self.price = price
         else:
             raise ValueError('Price must be between 50 and 1000')
         self.copies = copies
@@ -60,8 +60,95 @@ for i in books:
 
 JackBooks = []
 
+# Still need to fix this for problem 4
 #for x in books:
     #if "Jack" in x:
         #JackBooks.append(x)
 
 #print(JackBooks)
+
+class Fraction:
+     
+    def __init__(self, nr, dr=1):
+        self.nr = nr
+        if dr > 0:
+             self.dr = dr
+        else:
+            self.dr = dr * -1
+
+    def show(self):
+        print(self.nr, "/", self.dr)
+
+    def multiply(self, other):
+        nr = self.nr * other.nr
+        dr = self.dr * other.dr
+        return Fraction(nr,dr)
+    
+    def add(self, other):
+        nr = self.nr * other.dr + other.nr * self.dr
+        dr = self.dr * other.dr
+        return Fraction(nr,dr)
+
+f1 = Fraction(2,3)
+f1.show()
+f2 = Fraction(3,4)
+f2.show()
+f3 = f1.multiply(f2)
+f3.show()
+f3 = f1.add(f2)
+f3.show()
+# Fix this for problem 7
+#f3 = f1.add(5) 
+#f3.show()
+#f3 = f1.multiply(5) 
+#f3.show()
+
+class Product():
+
+    def __init__(self, id, marked_price, discount):
+        self.id = id
+        self.marked_price = marked_price
+        if marked_price <500:
+            self.discount = discount
+        else:
+            self.discount = discount +2
+    
+    def display(self):
+        print(self.id,  self.marked_price,  self.discount)
+
+    @property
+    def selling_price(self):
+        print(round(self.marked_price * 100 / (100 - self.discount),2))
+    
+p1 = Product('X879', 400, 6)
+p2 = Product('A234', 100, 5)
+p3 = Product('B987', 990, 4)
+p4 = Product('H456', 800, 6)
+
+print(p1.selling_price)
+print(p4.selling_price)
+
+class Circle():
+
+    def __init__(self, radius):
+        self.radius = radius
+        self._diameter = round(self.radius * 2,2)
+        self._circumfrence = round(2 * 3.14 * self.radius,2)
+        self._area = round(3.14 * self.radius * self.radius,2)
+
+    @property
+    def diameter(self):
+        return self._diameter
+
+    @property
+    def circumfrence(self):
+        return self._circumfrence
+
+    def area(self):
+        return self._area
+
+c1 = Circle(5)
+
+print(c1.diameter)
+print(c1.circumfrence)
+print(c1.area)
