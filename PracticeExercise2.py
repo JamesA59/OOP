@@ -55,17 +55,20 @@ book4 = Book('957-7-39-347216-2', 'Learn Biology','Jack', 'XYZ', 400, 200,6)
 
 books = [book1, book2, book3, book4]
 
+
 for i in books:
     i.display()
 
+
 JackBooks = []
 
-# Still need to fix this for problem 4
-#for x in books:
-    #if "Jack" in x:
-        #JackBooks.append(x)
+x = 0
+for i in books:
+    if books[x].author == "Jack":
+        JackBooks.append(books[x].title)
+    x = x + 1
 
-#print(JackBooks)
+print(JackBooks)
 
 class Fraction:
      
