@@ -2,7 +2,7 @@
 
 class BankAccount:
 
-    def __init__(self, name, balance):
+    def __init__(self, name, balance=0):
         self.name = name
         self.balance = balance
 
@@ -14,10 +14,22 @@ class BankAccount:
         print("The account belonging to ", self.name, " has a balance of $", self.balance)
 
     def withdraw(self, amount):
-        self.balance = self.balance - amount
+        self.balance -= amount
 
     def deposit(self, amount):
-        self.balance = self.balance + amount
+        self.balance += amount
+
+a1 = BankAccount('Mike', 200)
+a2 = BankAccount('Tom')
+ 
+a1.display()
+a2.display()
+ 
+a1.withdraw(100)
+a2.deposit(500)
+ 
+a1.display()
+a2.display()
 
 class Book:
 
@@ -37,13 +49,10 @@ class Book:
         print(self.isbn, self.title, self.price, self.copies)
 
     def in_stock(self):
-        if self.copies > 0:
-            print("True")
-        else:
-            print("False")
+        return True if self.copies > 0 else False
     
     def sell(self):
-        if self.copies > 0:
+        if self.in_stock():
             self.copies -= 1
         else: 
             print("The book is out of stock.")
@@ -70,10 +79,14 @@ for i in books:
 
 print(JackBooks)
 
+# Other way of writing above code:
+# JackBooks = [book.title for book in books if book.author == 'Jack']
+
 class Fraction:
      
     def __init__(self, nr, dr=1):
         self.nr = nr
+        self.dr = dr
         if dr > 0:
              self.dr = dr
         else:
@@ -83,14 +96,14 @@ class Fraction:
         print(self.nr, "/", self.dr)
 
     def multiply(self, other):
-        nr = self.nr * other.nr
-        dr = self.dr * other.dr
-        return Fraction(nr,dr)
+        if isinstance(other, int):
+            other = Fraction(other)
+        return Fraction(self.nr * other.nr , self.dr * other.dr)
     
     def add(self, other):
-        nr = self.nr * other.dr + other.nr * self.dr
-        dr = self.dr * other.dr
-        return Fraction(nr,dr)
+        if isinstance(other, int):
+            other = Fraction(other)
+        return Fraction(self.nr * other.dr + other.nr * self.dr, self.dr * other.dr)
 
 f1 = Fraction(2,3)
 f1.show()
@@ -100,11 +113,10 @@ f3 = f1.multiply(f2)
 f3.show()
 f3 = f1.add(f2)
 f3.show()
-# Fix this for problem 7
-#f3 = f1.add(5) 
-#f3.show()
-#f3 = f1.multiply(5) 
-#f3.show()
+f3 = f1.add(5) 
+f3.show()
+f3 = f1.multiply(5) 
+f3.show()
 
 class Product():
 
@@ -128,8 +140,10 @@ p2 = Product('A234', 100, 5)
 p3 = Product('B987', 990, 4)
 p4 = Product('H456', 800, 6)
 
-print(p1.selling_price)
-print(p4.selling_price)
+print(p1.id, p1.selling_price)
+print(p2.id, p2.selling_price)
+print(p3.id, p3.selling_price)
+print(p4.id, p4.selling_price)
 
 class Circle():
 
@@ -154,4 +168,4 @@ c1 = Circle(5)
 
 print(c1.diameter)
 print(c1.circumfrence)
-print(c1.area)
+print(c1.area())
