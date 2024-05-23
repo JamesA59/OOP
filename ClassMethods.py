@@ -48,6 +48,9 @@ Person.show_count()
 p1.show_count()
 '''
 
+from Employee import Employee
+from datetime import datetime
+
 # The most common use of class methods is to define factory methods
 class Person:
     def __init__(self,name,age):
@@ -65,6 +68,12 @@ class Person:
     @classmethod
     def from_dict(cls,d):
         return cls(d['name'], d['age'])
+    
+    @classmethod
+    def from_employee(cls,emp):
+        name = emp.first_name + ' ' + emp.last_name
+        age = datetime.today().year - emp.birth_year
+        return cls(name,age)
 
 p1 = Person('John', 20)
 p2 = Person('Jack', 34)
@@ -79,3 +88,7 @@ d = {'name': 'Jane', 'age':34 }
 p4 = Person.from_dict(d)
 p4.display()
 
+# Can create a person object from an employee object
+e1 = Employee('James', 'Smith', 1990, 6000)
+p5 = Person.from_employee(e1)
+p5.display()
