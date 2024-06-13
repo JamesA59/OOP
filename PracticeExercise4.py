@@ -20,17 +20,41 @@ class Time:
         return self._s
  
     def __eq__(self, other):
-        return self == other
-
+        if self._h == other._h and self._m == other._m and self._s == other._s:
+            return "True"
+        else:
+            return "False"
+    
     def __lt__(self, other):
-        return self < other
+        if self._h < other._h:
+            return "True"
+        elif self._h == other._h and self._m < other._m:
+            return "True"
+        elif self._h == other._h and self._m == other._m and self._s < other._s:
+            return "True"
+        else:
+            return "False"
     
     def __gt__(self, other):
-        return self > other
+        if self._h > other._h:
+            return "True"
+        elif self._h == other._h and self._m > other._m:
+            return "True"
+        elif self._h == other._h and self._m == other._m and self._s > other._s:
+            return "True"
+        else:
+            return "False"
 
     def __le__(self, other):
-        return self <= other
-
+        if self._h < other._h:
+            return "True"
+        elif self._h == other._h and self._m < other._m:
+            return "True"
+        elif self._h == other._h and self._m == other._m and self._s <= other._s:
+            return "True"
+        else:
+            return "False"
+    
     def _cmp(time1,time2):
         if time1._h < time2._h:
             return 1
