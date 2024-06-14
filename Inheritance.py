@@ -36,10 +36,29 @@ class Person:
         print(self.address, self.phone)
 
 class Employee(Person):
-    pass
+    
+    def __init__(self, name, age, address, phone, salary, office_address, office_phone):
+        self.name = name
+        self.age = age
+        self.address = address
+        self.phone = phone
+        self.salary = salary
+        self.office_address = office_address
+        self.office_phone = office_phone
 
-emp = Employee('Jack', 30, 'D4, XYZ Street, Delhi', '9944772291')
+    def calculate_tax(self):
+        if self.salary < 5000:
+            return 0
+        else:
+            return self.salary * 0.05
+        
+    def contact_details(self):
+        Person.contact_details(self)
+        print(self.office_address, self.office_phone)
 
+emp = Employee('Jack', 30, 'D4, XYZ Street, Delhi', '9944772291', 8000, 'ABC Street, Delhi', '897865589')
+
+# Below lines through 'issubclass' were done before anything was added to Employee, it was just passed
 print(emp.name)
 print(emp.age)
 print(emp.address)
@@ -48,6 +67,19 @@ emp.greet()
 # Should not have to do print() on the below line, but isn't working without it for some reason
 print(emp.is_adult())
 emp.contact_details()
-# Should not have to do print() on the below line, but isn't working without it for some reason
+# Should not have to do print() on the below lines, but isn't working without it for some reason
+# isinstance lines show that emp is an instance of both employee and person classes, 1st and 2nd true
+# issubclass line shows that employee is a derived class of the person base class, 3rd true
 print(isinstance(emp, Employee))
 print(isinstance(emp, Person))
+print(issubclass(Employee, Person))
+# Every class in python inherits from a base class called object as shown below, 4th true
+print(issubclass(Person, object))
+# All types (like int and str) are names of classes as shown below, 5th and 6th true
+print(issubclass(int, object))
+print(issubclass(str, object))
+
+print(emp.salary)
+print(emp.calculate_tax())
+# Below line shows contact details function being overwritten within the Employee class from the Person class, has 2 lines
+emp.contact_details()
