@@ -13,6 +13,11 @@
 # Derived classes can override functions (and maybe attributes?) from the base class
 # An example would be the employee class having its own contact_details function 
 #       that works differently than the person version of contact details function
+# Can have muli level inheritance where a teacher class inherits from the employee class that inherits from the person class
+# Can also have multiple derived classes from a single base class
+# Ex. There could be a student class that inherits from the Person class, just as the employee class inherits from the Person class
+# Should only use inheritance where it makes sense, unnecessary use of inheritance could make the system incomprehensable
+#       and create unwanted dependencies within classes
 
 
 class Person:
@@ -38,10 +43,7 @@ class Person:
 class Employee(Person):
     
     def __init__(self, name, age, address, phone, salary, office_address, office_phone):
-        self.name = name
-        self.age = age
-        self.address = address
-        self.phone = phone
+        super().__init__(name, age, address, phone)
         self.salary = salary
         self.office_address = office_address
         self.office_phone = office_phone
@@ -53,7 +55,7 @@ class Employee(Person):
             return self.salary * 0.05
         
     def contact_details(self):
-        Person.contact_details(self)
+        super().contact_details()
         print(self.office_address, self.office_phone)
 
 emp = Employee('Jack', 30, 'D4, XYZ Street, Delhi', '9944772291', 8000, 'ABC Street, Delhi', '897865589')
