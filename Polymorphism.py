@@ -66,6 +66,8 @@ do_something(person)
 # All 3 of these classes have the functions 'area' and 'perimeter' and the implementation is different in all of them
 # They all also have a class variable called 'name'
 
+import math
+
 class Rectangle:
     
     name = 'Rectangle'
@@ -91,8 +93,11 @@ class Triangle:
         self.s3 = s3
 
     def area(self):
+        # instructions did not include full formula for this, based off Heron's formula
+        # didn't use math.sqrt, instructions used other way of finding squre root, but couldn't see how
+        # this accomplishes same goal
         sp = (self.s1 + self.s2 + self.s3) / 2
-        return (sp * (sp - self.s1) * (sp - self.s2) * (sp - self.s3))
+        return math.sqrt((sp * (sp - self.s1) * (sp - self.s2) * (sp - self.s3)))
     
     def perimeter(self):
         return self.s1 + self.s2 + self.s3
@@ -124,12 +129,10 @@ def find_area_perimeter(shape):
     print('Area: ', shape.area())
     print('Perimeter: ', shape.perimeter())
 
-# line below gives wrong output
 find_area_perimeter(t2)
 find_area_perimeter(c1)
 find_area_perimeter(r2)
 
-# Still need to fix triangle area
 shapes = [r1, r2, t1, t2, c1, c2]
 total_area = 0
 total_perimeter = 0
