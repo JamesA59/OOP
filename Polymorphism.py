@@ -142,3 +142,14 @@ print(total_area, total_perimeter)
 # For polymorphism to occur you just need to define different classes which have commonly named methods
 # Python's polymorphism is based on duck typing:
 #       'If it walks like a duck, and quacks like a duck, then it is a duck'
+# So different objects that have common method names, can be treated in the same general way
+# Benefits of polymorphism:
+#       You can write generic code that can work with objects of different classes
+#       Polymorphism makes your code concise and flexible
+#       The code is easy to update, you can easily add new types 
+#           For example, can add rhombus class with area and perimeter functions
+#       The behaviour shown by overloaded operators is polymorphism
+#           For example, the data can behave different ways based off of the data types in the below lines
+#               def func(a, b):
+#                   print(a + b)
+#                   print(a * b) 
