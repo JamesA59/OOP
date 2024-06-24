@@ -24,7 +24,6 @@ class Course:
 
     def new_user_enrolled(self,u):
         self.users.append(u)
-        return self.users
 
     def received_a_rating(self, r):
         self.ratings.append(r)
@@ -50,7 +49,6 @@ class VideoCourse(Course):
 
     def new_user_enrolled(self,u):
         self.users.append(u)
-        return self.users
 
     def received_a_rating(self, r):
         self.ratings.append(r)
@@ -76,7 +74,6 @@ class PdfCourse(Course):
 
     def new_user_enrolled(self,u):
         self.users.append(u)
-        return self.users
 
     def received_a_rating(self, r):
         self.ratings.append(r)
@@ -108,9 +105,13 @@ p1.show_details()
 '''
  2. What is the output of this -
 '''
-# d.cook will return "Can cook pasta" because Mother is the second base class stated for daughter 
-#       and mother's print statement is "Can cook pasta"
-# s.cook will return "Can cook butter chicken" because it is his print statement
+
+# d.cook will return "Can cook noodles" because Father is the first base class stated for daughter 
+#       and father's print statement is "Can cook noodles"
+# Then there will be a blank line
+# s.cook will return "Can cook pasta" because Mother is the first base class stated for son 
+#       and mother's print statement is "Can cook pasta" 
+#       then "Can cook butter chicken" because it is son's print statement
 
 class Mother:
         def cook(self):
@@ -134,3 +135,97 @@ s = Son()
 d.cook()
 print()
 s.cook()
+
+'''
+3. What will be the output of this code -
+'''
+
+# x.greet will return "I am Person" because it is the print statement of the base class of the class Teaching Assistant is derived from
+        # Then it will return "I am Student" because it is the print statement of Teaching Assistant's base class
+        # and listed before the other base class 'Teacher' when initializing the TeachingAssistant class
+        # Finally, it will return "I am a Teaching Assistant" because it is Teaching Assistant's own print statement
+
+class Person:
+    def greet(self):
+        print('I am a Person')
+ 
+class Teacher(Person):
+    def greet(self):
+        Person.greet(self)    
+        print('I am a Teacher')
+ 
+class Student(Person):
+    def greet(self):
+        Person.greet(self)    
+        print('I am a Student')
+ 
+class TeachingAssistant(Student, Teacher):
+     def greet(self):
+         super().greet()
+         print('I am a Teaching Assistant')
+       
+x = TeachingAssistant()
+x.greet()
+
+'''
+4. In the following inheritance hierarchy we have written code to add 'S' to id of Student, 
+'T' to id of Teacher and both 'T' and 'S' to id of Teaching Assistant.
+ What will be the output of this code. If the code does not work as intended, what changes we need to make.
+'''
+
+# From what I can tell, the issue with the code is that it is only adding the 'T' and not the 'S' to the Teaching Assistant id
+# This is because using base class names can cause bugs with multiple inheritance, can fix this by using super()
+# Will add this fix to the Teacher, Person, and TeachingAssistant classes
+
+
+
+class Person:
+    def __init__(self,id):
+        self.id = id
+        
+class Teacher(Person):
+    def __init__(self,id):
+        super().__init__(id)
+        self.id += 'T'
+
+# Original
+'''
+class Teacher(Person):
+    def __init__(self,id):
+        Person.__init__(self,id)
+        self.id += 'T'
+'''
+    
+class Student(Person):
+    def __init__(self,id):
+        super().__init__(id)
+        self.id += 'S'
+
+# Original
+'''
+class Student(Person):
+    def __init__(self,id):
+        Person.__init__(self,id)
+        self.id += 'S'
+'''
+   
+class TeachingAssistant(Student, Teacher):
+     def __init__(self,id):
+        super().__init__(id)
+
+# Original
+'''
+class TeachingAssistant(Student, Teacher):
+     def __init__(self,id):
+        Student.__init__(self,id)
+        Teacher.__init__(self,id)
+'''
+       
+x = TeachingAssistant('2675')
+print(x.id)
+y = Student('4567')
+print(y.id)
+z = Teacher('3421')
+print(z.id)
+p = Person('5749')
+print(p.id)
